@@ -74,7 +74,7 @@ melody = {
     ]
     | Overlay [AsIs, Reverb 1]
   ]
-  > FitLength bass
+  | FitLength bass
 }
 
 chord = {
@@ -98,7 +98,7 @@ chord = {
   | Overlay [Fm 1, Fm 2 | Pm -1/2]
   | Overlay [Sine, Sine 2 | Gm 1/16]
   | Gm 1/4
-  > FitLength bass
+  | FitLength bass
 }
 
 main = {
@@ -121,4 +121,5 @@ main = {
       *(f: 0|400 [-1]) Take 30 
     ], 
   ]
+  | Repeat 2
 } -> [bass, melody, chord]

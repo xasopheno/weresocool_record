@@ -179,7 +179,7 @@ main = {
       ],
     ]
     | Seq [Fm 1, Fm 7/8]
-    | Repeat 3
+    | Repeat 2
     | Lm 12,
     Overlay [
       noise | FitLength thing5,
@@ -187,8 +187,8 @@ main = {
       thing6,
     ]
     | Lm 3/4
-    | Repeat 3
+    | Repeat 2
     | Lm 12
   ]
-  | Repeat 4
+  | Repeat 2
 }

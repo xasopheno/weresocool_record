@@ -1,4 +1,4 @@
-{ f: 311.127, l: 1, g: 1, p: 0 }
+{ f: 311.127, l: 1, g: 1/3, p: 0 }
 
 thing1 = {
   Overlay [
@@ -24,7 +24,8 @@ thing1 = {
     )
     Take 23
   ]
-}
+  | #line
+} -> [line]
 
 chord = {
   O[
@@ -56,7 +57,7 @@ chord = {
       Sine 1.1 | Gm 1/2, Sine 2 | Gm 1/2, Sine 5
     ] | Gm 1/4
   ]
-  | Gm 2/7
+  | Gm 5/14
 }
 
 thing2 = {
@@ -68,7 +69,8 @@ thing2 = {
     )
     Take 24
   ]
-}
+  | #chord
+} -> [chord]
 
 main = {
   Seq [
@@ -79,8 +81,8 @@ main = {
     | Seq [
       Fm 9/8 | Lm 2/3,
       Repeat 2, 
-      Lm 9/8, 
-      Lm 9/8
+      Lm 5/4, 
+      Lm 5/4 
       | ModBy [
         *(
           f: 0|120 [-1],
