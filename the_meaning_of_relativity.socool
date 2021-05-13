@@ -1,4 +1,4 @@
-{ f: 311.127, l: 1, g: 1, p: 0 }
+{ f: 311.127, l: 1, g: 1/5, p: 0 }
 
 thing1 = {
   O[
@@ -72,4 +72,5 @@ main = {
       | ModBy [Lm 100, *(g: 100|100 [-1]) Take 100]
     ]
   ]
-}
+  | #everything
+} -> [everything]

@@ -1,15 +1,15 @@
-{ f: 311.127, l: 1, g: 1, p: 0 }
+{ f: 311.127, l: 1, g: 1/3, p: 0 }
 
 fn1(a, b, c, d, e, f, g, h) = {
   Overlay [
     Overlay [
-      Seq [
+      #melody1 | Seq [
         Fm 0, b, c, d, g 
       ],
-      Seq [
+      #melody2 | Seq [
         Fm 0, Fm 0, e, f, h
       ],
-      a | Lm 4 | Gm 2
+      #melody3 | a | Lm 4 | Gm 2
     ]
   ]
 }
@@ -52,5 +52,5 @@ main = {
     ]
   | Lm 1/5
   -- | Seq [Fm 1, Lm 9/8 | Fm 8/9, Lm 5/4 | Lm 5/4]
-  | Seq [AsIs, Fm 0, Lm 4/3, Fm 0, Lm 7/4]
-}
+  | Seq [AsIs, Fm 0, Lm 4/3, Fm 0 | Lm 4/3, Lm 7/4]
+} -> [melody1, melody2, melody3]

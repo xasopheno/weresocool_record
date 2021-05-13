@@ -1,4 +1,4 @@
-{ f: 311.127, l: 1, g: 1, p: 0 }
+{ f: 311.127, l: 1, g: 1/4, p: 0 }
 
 bass = {
   #bass |
@@ -103,6 +103,10 @@ chord = {
 
 main = {
   Seq [
+    Overlay [
+      chord,
+      bass, 
+    ] | Lm 2/3,
     Seq [
       chord | Lm 1/6 | Gm 2 
       | ModBy [
@@ -119,7 +123,7 @@ main = {
     chord | Lm 1/6 | Gm 2
     | ModBy [
       *(f: 0|400 [-1]) Take 30 
-    ], 
+    ] | Lm 5, 
   ]
   | Repeat 2
 } -> [bass, melody, chord]
