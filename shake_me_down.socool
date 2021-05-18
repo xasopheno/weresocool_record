@@ -1,4 +1,4 @@
-{ f: 311.127, l: 1, g: 1, p: 0 }
+{ f: 311.127, l: 1, g: 1/4, p: 0 }
 
 bass = {
   #bass |
@@ -74,7 +74,7 @@ melody = {
     ]
     | Overlay [AsIs, Reverb 1]
   ]
-  > FitLength bass
+  | FitLength bass
 }
 
 chord = {
@@ -98,11 +98,15 @@ chord = {
   | Overlay [Fm 1, Fm 2 | Pm -1/2]
   | Overlay [Sine, Sine 2 | Gm 1/16]
   | Gm 1/4
-  > FitLength bass
+  | FitLength bass
 }
 
 main = {
   Seq [
+    Overlay [
+      chord,
+      bass, 
+    ] | Lm 2/3,
     Seq [
       chord | Lm 1/6 | Gm 2 
       | ModBy [
@@ -119,6 +123,7 @@ main = {
     chord | Lm 1/6 | Gm 2
     | ModBy [
       *(f: 0|400 [-1]) Take 30 
-    ], 
+    ] | Lm 5, 
   ]
+  | Repeat 2
 } -> [bass, melody, chord]

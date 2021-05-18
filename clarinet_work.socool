@@ -1,0 +1,75 @@
+{ f: 311.127, l: 1, g: 1, p: 0 }
+
+thing1 = {
+  Fm 1/2 |
+  -- similar overtones to a clarinet
+  O[
+    (9/1, 2, 1/8, 1),
+    (9/1, 0, 1/8, -1),
+    (7/1, 7, 1/3, 1),
+    (7/1, 0, 1/3, -1),
+    (5/1, 2, 1, 1),
+    (5/1, 0, 1, -1),
+    (3/1, 3, 1, 1),
+    (3/1, 0, 1, -1),
+    (1/1, 1, 1, 1),
+    (1/1, 0, 1, -1),
+  ]
+  | Seq [
+    Fm 1, Fm 9/8, Fm 5/4, Fm 5/3, Fm 2 | Lm 2, 
+    Fm 15/8 | Lm 2, 
+    Fm 3/2, Fm 5/3, Fm 2, Fm 4/3,
+    Fm 5/4, Fm 3/2, Fm 9/8, 
+    -- ha
+    Seq [Fm 15/16, Fm 15/32, Fm 0] | Lm 1/3
+  ]
+}
+
+thing2 = {
+  -- This is probably what you're looking for
+  -- Just a silence followed by a chord
+  Seq [
+    Gm 0,
+    O[
+      (3, 2, 1, 0),
+      (5/2, 2, 1, 1/2),
+      (3/2, 2, 1, -1/2),
+      (1/2, 0, 1, 0),
+    ],
+    Gm 0,
+    O[
+      (3, 2, 1, 0),
+      (8/3, 2, 1, 1/2),
+      (3/2, 2, 1, -1/2),
+      (15/16, 0, 1, 0),
+    ],
+    Gm 0,
+    O[
+      (10/3, 2, 1, 0),
+      (8/3, 2, 1, 1/2),
+      (5/3, 2, 1, -1/2),
+      (2/3, 0, 1, 0),
+    ],
+    Gm 0,
+    O[
+      (15/4, 2, 1, 0),
+      (3/2, 2, 1, 1/2),
+      (15/16, 2, 1, -1/2),
+      (9/16, 0, 1, 0),
+    ]
+  ]
+  | Seq [
+    Repeat 3,   
+    Reverse
+    -- the last time play the same chords backwards...I'm lazy
+  ]
+  | FitLength thing1
+}
+
+main = {
+  Overlay [
+    thing1 | Gm 1/2,
+    thing2
+  ]
+  | Repeat 3
+}
