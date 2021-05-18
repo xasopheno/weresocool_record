@@ -98,7 +98,7 @@ melody2 = {
     Fm 0 | Lm 1/100
   ]
   | Overlay [Fm 1/2, Fm 3/4]
-  > FitLength melody1
+  | FitLength melody1
 }
 
 main = {
