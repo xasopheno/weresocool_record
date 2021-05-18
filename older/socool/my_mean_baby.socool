@@ -1,0 +1,61 @@
+{ f: 311.127, l: 1, g: 1, p: 0 }
+
+thing1 = {
+  Seq [
+    Fm 5/4
+  ]
+  | Seq [
+      Fm 0, Fm 5/3, Fm 5/4, Fm 9/8, Fm 0, Fm 1, Fm 9/8, 
+      Fm 0, Fm 5/6 | Lm 6
+  ]
+  | Seq [
+    Fm 0, AsIs, Fm 0, 
+    Reverse 
+      | Fm 5/4 
+      | Invert 
+      | Overlay [Fm 1, Fm 3/2] 
+      | ModBy [
+        Lm 3, 
+        Overlay [Fm 7/8, Fm 7/3 | Gm 3/4]] | Gm 1/2 | Lm 4/5,
+    Fm 0 | Lm 1/5,
+  ]
+  | Lm 1/5
+  | O[
+    (2, 3, 1, 1),
+    (2, 0, 1, -4/5),
+    (3/2, 3, 1, 3/4),
+    (3/2, 0, 1, -1/2),
+    (9/8, 3, 1, 1/3),
+    (9/8, 0, 1, -8/9),
+  ]
+}
+
+thing2 = {
+  Gm 2/3
+  | O[
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+    (1/2, 2, 1, 1),
+    (1/2, 0, 1, -1),
+  ]
+  | Seq [
+    Fm 3/4, Fm 2/3, Fm 5/8, Fm 15/16, Fm 9/8,
+    Fm 6/7, Fm 7/6, Fm 5/4, Fm 1/2, Overlay [Fm 3/4, Fm 15/8, Fm 2, Fm 9/4, Fm 5/2] | Pm -1,
+  ]
+  | Overlay [
+    Sine 1.01 | ModBy [Lm 4, Fm 0], 
+    Reverb 1 | Overlay [Fm 2, Fm 4 | ModBy [Fm 0, Fm 1]]
+  ]
+  | Repeat 8
+  | FitLength thing1
+}
+
+main = {
+  Overlay [
+    thing1,
+    thing2
+  ]
+  | Seq [Lm 1, Lm 7/8, Lm 5/6, Lm 3/4]
+  | Seq [Fm 1, Fm 9/8]  
+  | Repeat 2
+}

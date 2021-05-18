@@ -1,0 +1,86 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+overtones = {
+  O[
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+    (3/4, 0, 1, 1),
+    (3/4, 0, 1, -1),
+    (1/2, 0, 1, 1),
+    (1/2, 0, 1, -1),
+    (1/4, 0, 1, 1),
+    (1/4, 0, 1, -1),
+  ]
+}
+
+thing1 = {
+  Seq [
+    Fm 1, Fm 9/8, Fm 5/4, Fm 3/2 | Lm 3/2
+  ]
+  | Seq [Fm 1, Fm 7/8, Fm 5/6]
+  | Repeat 3
+  | Overlay [
+    Sine, 
+    Sine 1.52 | Gm 1/8
+  ]
+}
+
+thing2 = {
+  O[
+    (2/1, 2, 1/2, -1/2),
+    (2/1, 0, 1/2, -1/2),
+    (1/1, 2, 1, -1/2),
+    (1/1, 0, 1, -1/2),
+    (3/4, 2, 1, 1/2),
+    (3/4, 0, 1, 1/2),
+    (1/2, 2, 1, 0),
+    (1/2, 0, 1, 0),
+  ]
+  | Fm 3/2
+  | Seq [
+    Fm 1 | Lm 3, Fm 3/2, Fm 15/8, Fm 9/4, Fm 11/4, Fm 16/5 | Lm 3
+  ]  
+  | Seq [Fm 1, Fm 5/4 | Reverse]
+  | Seq [Fm 1, Fm 9/8, Fm 5/4, Fm 11/8]
+  | ModBy [Gm 1, Gm 1/2, Gm 1/4, Gm 1/8, Gm 1/16]
+  | Overlay [
+    Fm 1, 
+    Noise | Gm 1/3
+    | ModBy [Seq [Pa -1, Pa 1] | Repeat 32]
+    
+  ]
+  > FitLength thing1
+}
+
+thing3 = {
+  Fm 3/2 |
+  O[
+    (15/8, 2, 1, 1/2),
+    (15/8, 0, 1, -1/2),
+    (3/2, 2, 1, 1/2),
+    (3/2, 0, 1, -1/2),
+    (5/4, 8, 1, 1/2),
+    (5/4, 0, 1, -1/2),
+    (9/8, 3, 1, 1/2),
+    (9/8, 0, 1, -1/2),
+  ]
+  | Seq [Lm 7, Fm 9/8, Lm 5]
+  | Repeat 2
+  | Overlay [
+    Sine, 
+    Sine 1.7 | Gm 1/12
+  ]
+  > FitLength thing1
+}
+
+main = {
+  Overlay [
+    overtones
+    | thing1,
+    thing2,
+    thing3
+  ]
+  | Lm 1/5
+  | Seq [AsIs | Repeat 2, Reverse]
+  | Repeat 2
+}

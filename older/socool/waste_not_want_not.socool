@@ -1,0 +1,83 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+overtones1 = {
+  O[
+    (2, 2, 1/2, 0),
+    (3/2, 2, 1/2, 0),
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+    (1/2, 1, 1, 1),
+    (1/2, 0, 1, -1),
+  ]
+}
+
+overtones2 = {
+  Fm 2 | 
+  O[
+    (2, -4, 1/2, 3/4),
+    (2, 0, 1/2, -3/4),
+    (3/2, 3, 1/2, 1/4),
+    (3/2, 0, 1/2, 1/4),
+    (1/1, 3, 3/4, 1/2),
+    (1/1, 0, 3/4, -1/2),
+    (1/2, 2, 1/2, 1/2),
+    (1/2, 0, 1/2, -1/2),
+  ]
+}
+
+thing1(a, b, c) = {
+  Seq [
+    c, a, b, b, a, thing2(a, b, c)
+  ]
+}
+
+thing2(a, b, c) = {
+  Seq [
+    b, a, b, c
+  ] | Lm 3/4
+}
+
+melody1 = {
+  Seq [
+    thing1(
+      Seq [Fm 1, Fm 3/4], 
+      Seq [Fm 3/2, Fm 5/4], 
+      Seq [Fm 4/3, Fm 5/4, Fm 9/8, Fm 1]
+    ),
+    thing1(
+      Seq [Fm 9/8, Fm 3/4], 
+      Seq [Fm 15/16, Fm 5/4], 
+      Seq [Fm 5/6, Fm 9/8, Fm 1, Fm 15/16]
+    ),
+    Fm 0
+  ]
+}
+
+melody2 = {
+  Seq [
+    Fm 0, Fm 1 | Lm 2, Fm 5/4, Fm 9/8, 
+    Fm 1, Fm 3/2 | Lm 3,
+    Fm 4/3 | Lm 2, Fm 5/4, Fm 5/3, Fm 3/2 | Lm 2,
+    Fm 4/3, Fm 5/4 | Lm 3,
+    Fm 1 | Lm 2, Fm 0, Fm 9/8, Fm 5/4, Fm 4/3, Fm 9/8, 
+    Fm 5/4, Fm 1, Fm 5/4, Fm 9/8 | Lm 2, Fm 0 | Lm 3,
+    Fm 1 | Lm 2, Fm 5/4 | Lm 3, Fm 9/8 | Lm 3, Fm 1 | Lm 2, Fm 5/6, Fm 3/4 | Lm 1, 
+    Fm 0 | Lm 3
+  ]  
+  > FitLength melody1 | Repeat 4
+}
+
+main = {
+  Seq [
+    Overlay [
+      Pa -1/4 | overtones1 | melody1 | Repeat 1,
+      Seq [Fm 0 | Lm 1/20, Pa 1/4 | overtones2 | melody1 | Repeat 1 | Gm 1/2]
+    ],
+    Overlay [
+      Pa -1/4 | overtones1 | melody1 | Repeat 4,
+      Pa 1/4 | overtones2 | melody2
+    ]
+  ]
+  | Repeat 4
+  | Lm 1/4
+}

@@ -1,0 +1,49 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+overtones = {
+  O[
+    (5/1, 2, 1, 0),
+    (5/2, 0, 1, 1/2),
+    (5/2, 8, 1, -1/2),
+    (4/1, 2, 1, 0),
+    (3/2, 0, 1, 1),
+    (4/3, 2, 1, -1),
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+  ]
+}
+
+main = {
+  overtones |
+  Overlay [
+    Seq [Fm 1/2] | Gm 1/7, 
+    Seq [
+      Seq [Fm 1 | ModBy [Gm 1/2, Gm 0.1], 
+      Overlay [Fm 1/2, Fm 8 | Gm 1/2] | Gm 1/5,] | Lm 1/2, Fm 0] | Lm 1/2,
+    Overlay [
+      Seq [Fm 0, Fm 2, Fm 0, Fm 0] | Lm 1/6,
+      Seq [Fm 0, Fm 4, Fm 0, Fm 0] | Lm 1/6,
+      Seq [Fm 0, Fm 5, Fm 0, Fm 0] | Lm 1/5,
+      Seq [Fm 8, Fm 8, Fm 0] | Lm 1/6,
+      Seq [Fm 0, Fm 10, Fm 0] | Lm 1/7,
+      Seq [Fm 0, Fm 5, Fm 0, Fm 0] | Lm 1/6,
+      Seq [Fm 1/2, Fm 1/2, Fm 0, Fm 0] | Lm 1/4,
+      Seq [Fm 1/4, Fm 0] | Lm 1/2,
+    ]
+    | Gm 1/8
+  ]
+  | Seq [
+    Fm 15/16, Fm 5/6, Fm 3/4, Fm 25/24, Fm 9/8 | Lm 3, 
+    Fm 3/4, Fm 1/2 | Lm 4,
+    Fm 3/4, Fm 4/5, Fm 3/4, Fm 1, Fm 9/8 | Lm 3,
+  ]
+  | Overlay [
+    Reverb 1, Sine 1, 
+    AsIs | Gm 1/9 | Overlay [Reverb 1, Sine 4], 
+    Sine 10 | Gm 1/9, 
+    Noise | Gm 1/8,
+    Square | Gm 4/5,
+    Reverb 1 | Square,
+  ]
+  | Repeat 4
+}

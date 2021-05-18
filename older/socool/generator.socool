@@ -1,0 +1,24 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+overtones = {
+  O[
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+  ]
+}
+
+thing1 = {
+  *(
+    f: 0/12, [-2, 4, 3, -1],
+    g: 0/24, [1],
+    l: 1/8, [2, -1, 1, -1]
+  ) Take 32
+  | ModBy [Fm 1, Overlay [Fm 1, Fm 1/2]]
+}
+
+main = {
+  overtones
+  | thing1
+  | Seq [Fm 1, Reverse]
+  | Lm 1/4
+}
