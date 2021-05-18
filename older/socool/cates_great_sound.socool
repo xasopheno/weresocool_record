@@ -1,0 +1,34 @@
+{ f: 311.127, l: 1, g: 1, p: 0 }
+thing1 = {
+  Overlay [
+    Fm 1 | ModBy [ Lm 3/100, Fm 0 | Lm 0.01, Fm 0 | Lm 96/100 ],
+    Fm 2 | ModBy [ Lm 3/100, Fm 0 | Lm 0.01, Fm 0 | Lm 96/100 ],
+    Fm 5/4 | ModBy [ Lm 3/100, Fm 0 | Lm 0.01, Fm 0 | Lm 96/100 ]
+    -- Seq [ Fm 2, Fm 0, Fm 0 ] | Lm 1/8
+  ]
+  |
+  O[
+    -- fm, fa, g, pa
+    (1/1, 1, 1, 1),
+    (1/1, 0, 1, -1),
+  ]
+  | Seq [
+    Fm 1, Fm 9/8, Fm 5/4
+  ]
+}
+thing2 = {
+  O[
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+  ]
+  | Seq [
+    Fm 3/4
+  ]
+  > FitLength thing1
+}
+main = {
+  Overlay [
+    thing1,
+    -- thing2
+  ] | Repeat 100 | Lm 1/10
+}

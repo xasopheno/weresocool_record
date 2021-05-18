@@ -1,0 +1,88 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+overtones = {
+  O[
+    (2/1, 2, 1, 1),
+    (2/1, 0, 1, -1),
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+    (3/2, 2, 1, 1),
+    (3/2, 0, 1, -1),
+    (1/2, 2, 1, 1),
+    (1/4, 0, 1, -1),
+    (1/4, 0, 1, 1),
+  ]
+}
+
+thing1 = {
+  Seq [
+    Seq [
+      Fm 1, Fm 9/8, Fm 5/4, Fm 3/2 | Lm 2, Fm 5/4 
+    ]
+    | Seq [Fm 1, Fm 7/8, Fm 4/5],
+    Fm 4/5 | Seq [Fm 5/4, Fm 9/8, Fm 4/3, Fm 3/2, Fm 5/3, Fm 15/8]
+    | Seq [
+      AsIs,
+      Reverse | Lm 3/5 | Overlay [Fm 1, Fm 2, Fm 3/2, Fm 5/2] | Gm 1/2, 
+    ],
+    Seq [Fm 1, Fm 3/4, Fm 1/2] | Lm 2
+  ]
+  | Seq [Fm 1, Fm 6/5, Fm 9/8]
+}
+
+thing2 = {
+  Seq [
+    Fm 2 | 
+    Seq [
+      Fm 1, Fm 7/8, Fm 4/5, Fm 3/4, Fm 2/3   
+    ]
+    | Seq [AsIs, Reverse, Invert | Fm 4, Invert | Reverse | Fm 4]
+    | O[
+      (11/4, 2, 1, 1),
+      (11/4, 0, 1, -1),
+      (5/2, 2, 1, 1),
+      (5/2, 0, 1, -1),
+      (2/1, 2, 1, 1),
+      (2/1, 0, 1, -1),
+      (9/4, 2, 1, 1),
+      (9/4, 0, 1, -1),
+    ]
+  ] > FitLength thing1
+}
+
+thing3 = {
+  O[
+    (2/1, 2, 1, 1),
+    (2/1, 0, 1, -1),
+    (3/2, 2, 1, 1),
+    (3/2, 0, 1, -1),
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+  ]
+  | ET(31) @ [Random(100)]
+  
+  > FitLength thing1
+}
+
+a = {
+    Overlay [
+      thing2,
+      overtones
+      | thing1,
+    ]
+}
+
+b = {
+    Overlay [
+      thing2,
+      thing3,
+    ]
+}
+
+
+main = {
+  Seq [
+    b, a, b, a
+  ]
+  | Lm 1/7
+}

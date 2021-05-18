@@ -1,0 +1,64 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+overtones = {
+  O[
+    (4/1, 2, 1, 1),
+    (2/1, 2, 1, 1),
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+    (1/2, 2, 1, 1),
+  ]
+}
+
+thing1 = {
+  overtones |
+  Seq [
+    Overlay [
+      Noise | Lm 1/10 | Gm 1/2,
+      Seq [
+        O[
+          (3/2, 2, 1, 1),
+          (1/1, 2, 1, 1),
+          (1/1, 0, 1, -1),
+          (1/2, 0, 1, 0),
+        ] 
+        | Seq [Fm 1, Fm 0, Fm 0] | Lm 1/10
+      ],
+    ],
+    Noise | Fm 0 | Lm 1,
+    Fm 0 | Lm 4,
+  ]  
+  | Lm 1/30
+  | &[
+    Fm 1, Fm 0, Fm 1/2, Fm 3, Fm 7, Fm 1/2 | Gm 1/2 
+  ] @ [Random(11)]
+  | Repeat 3
+  | Overlay [
+    Sine 8 | Gm 1/8,
+    Sine, 
+  ]
+}
+
+bass = {
+  O[
+    (1, 0, 1, -1/2),
+    (1, 2, 1, 1/2),
+    (1/2, 0, 1, -1/2),
+    (1/2, 2, 1, 1/2),
+  ]
+  | Seq [
+    Fm 1, Fm 3/4, Fm 1/2, Fm 5/8, Fm 3/4
+  ]  
+  | Seq [Fm 1, Fm 0, Fm 1, Fm 7/6 | Reverse, Fm 7/2 | Lm 1/4 | Gm 1/8]
+  > FitLength thing1
+}
+
+main = {
+  Overlay [
+    thing1,
+    bass 
+  ]
+  | Gm 1/2
+  | Repeat 10
+  | Lm 2/3
+}

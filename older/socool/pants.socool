@@ -1,0 +1,82 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+overtones = {
+  O[
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+  ]
+}
+
+thing1 = {
+  O[
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+    (1/2, 0, 1, 0),
+    (1/2, 2, 1, 0),
+  ]
+  | Overlay [
+    Seq [Fm 2, Fm 0, Fm 0] | Lm 1/4,
+    Fm 1, 
+  ]
+  | Seq [
+    Fm 1, Fm 9/8, Fm 5/4, Fm 3/2, 
+    Fm 4/3, Fm 5/4, Fm 4/3, Fm 3/2, 
+    Seq [Fm 4/3, Fm 9/8] | Lm 1/2
+  ]
+  | Repeat 3
+}
+
+thing2 = {
+  Fm 2 | 
+  O[
+    (1/1, 0, 1, 0),
+    (1/2, 0, 1, 0),
+  ]
+  | Seq [
+     Fm 0, Fm 15/8, Fm 3/2, Fm 4/3, Fm 5/4, 
+     Fm 9/8, Fm 5/4, Fm 9/8, Fm 5/4
+  ]
+  | Pa 1
+  | Repeat 19
+  > FitLength thing1
+}
+
+thing3 = {
+  O[
+    (3, 8, 1, 0),
+    (3, 0, 1, 0),
+    (1, 0, 1, 0),
+  ]
+  | Seq [
+    Fm 1, Fm 9/8, Fm 5/4, Fm 3/2, Fm 5/3 
+  ]
+  | Seq [Fm 1, Reverse]  
+  | Pa -1
+  | Repeat 16
+  > FitLength thing1
+}
+
+thing4 = {
+  Fm 4 | 
+  O[
+    (2, 8, 1/4, 0),
+    (1, 8, 1, -1/2),
+    (1, 0, 1, 1/2),
+    (1/2, 0, 1, 0),
+  ]
+  | Seq [Fm 5/4, Fm 3/2, Fm 9/8]
+  | Repeat 64
+  > FitLength thing1
+}
+
+  
+main = {
+  Seq [
+    Overlay [
+      thing1,
+      thing2,
+      thing3,
+    ]
+  ]
+  | Sine 1.1
+}

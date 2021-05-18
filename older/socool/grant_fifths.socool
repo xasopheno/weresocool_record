@@ -1,0 +1,42 @@
+-- Our starting frequency is an F
+{ f: 311.127, l: 1, g: 1, p: 0 }
+
+main = {
+  -- Start down an octave
+  Fm 1/2 |
+  -- Overlay two notes: the root and then note you've arrived 
+  -- at given a cycle of fifths. 
+  -- These are just fifths. 700/1200. An equal tempered fifth 
+  -- is 702/1200. I can show you how to make that if you want.
+  -- We can hang and pair on it if you'd like. 
+  -- You can comment out and uncomment out notes by removing and 
+  -- adding dashes. So if you uncomment the line below the --D
+  -- that will multiple the frequency by 3/2 again and you'll go up 
+  -- another fifth. 
+  Overlay [
+    -- F
+    Fm 1,
+    -- F
+    Fm 1  
+    -- C
+    | Fm 3/2 
+    -- G
+    | Fm 3/2 
+    -- D
+    -- | Fm 3/2 
+    -- A
+    -- | Fm 3/2 
+    -- E
+    -- | Fm 3/2 
+    -- B
+    -- | Fm 3/2 
+    -- F#
+    -- | Fm 3/2 
+    -- C#
+    -- It's too high: When the notes start getting super high
+    -- you can uncomment this out and it will take it down 2 
+    -- octaves. 1/2 is down 1 octave, 1/8 is down 3 octaves
+    --| Fm 1/4
+    
+  ]
+}

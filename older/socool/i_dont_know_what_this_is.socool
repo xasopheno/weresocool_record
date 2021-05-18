@@ -1,0 +1,57 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+thing1 = {
+  Seq [
+    Overlay [
+      O[
+        (4, 0, 1, 1),
+        (4, -3, 1, 1),
+        (5/2, 0, 1, 1),
+        (5/2, -3, 1, 1),
+        (3, 0, 1, 1/9),
+        (3, 2, 1, 1/9),
+        (1, 0, 1, 0),
+        (1, -1, 1, 0),
+        (1/2, 0, 1, 0),
+        (1/2, 3, 1, 0),
+      ],
+      O[
+        (1/1, 2, 1, 1),
+        (1/1, 0, 1, -1),
+      ]
+      | Overlay [
+          Seq [Fm 6, Fm 0, Fm 0] | Lm 1/30,
+          Seq [Fm 4, Fm 0, Fm 0] | Lm 1/30,
+          Seq [Fm 0, Fm 4 | Fa 8, Fm 0] | Lm 1/30,
+          Seq [Fm 2, Fm 0, Fm 0] | Lm 1/7,
+          Seq [Fm 0, Fm 2 | Fa 7, Fm 0] | Lm 1/5,
+          Seq [Fm 1, Fm 0 | Fa 7, Fm 0] | Lm 1/5,
+          Seq [Fm 1/2, Fm 0, Fm 0] | Lm 1/30,
+          Seq [Fm 1/2 | Fa 3, Fm 0, Fm 0] | Lm 1/30,
+      ]
+      | Seq [Fm 1/4, Fm 1/3, Fm 5/4, Fm 1/4]
+    ]
+    | *(
+      l: 100|100 Poly [1, 1, -1, -1/4],
+      g: 10|10 [0*15, -1]
+    )
+    Take 18,
+  ]
+  | ModBy [ 
+    *(
+      f: 10|10 Expr `1/x * sin(x) + 1`,
+      f: 0|300 Expr `x^2 + 1`,
+    )
+    Take 200
+  ]
+  | Seq [Fm 1, Fm 5/4, Fm 7/8, Fm 3/4]
+  -- | Overlay [Sine 1.1, Sine 1]
+  -- | Gm 1/2
+}
+
+main = {
+  Fm 1/3 |
+  thing1
+  | Lm 1/2
+  | Repeat 3
+}

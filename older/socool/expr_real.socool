@@ -1,0 +1,95 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+overtones = {
+  O[
+    (2/1, 0, 1/8, 0),
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+    (1/2, 0, 1, 0),
+    (1/4, 0, 1/10, 0),
+  ]
+}
+
+thing1 = {
+  Seq [
+    *(
+      f: 0|11 Expr `sin(x)`,
+      l: 11|11 Poly [1, 1/100],
+      g: 5|10 [1]
+    ) 
+    Take 8
+  ]
+  | Repeat 6
+}
+
+thing2 = {
+  Overlay [
+    Seq [Fm 1, Fm 4/3, Fm 9/8]
+    | Overlay [Fm 1, Fm 3/4],
+    Seq [Fm 0, Fm 9/8, Fm 5/4],
+    Fm 1 | Lm 3
+  ]
+  | Seq [ 
+    Fm 0,
+    O[
+      (11/4, 0, 1/10, 0),
+      (9/4, 2, 1, 1),
+      (5/3, 0, 1, -1),
+    ],
+    Fm 0,
+    O[
+      (3, 0, 1/10, 0),
+      (5/2, 2, 1, 1),
+      (15/8, 0, 1, -1),
+    ]
+    
+  ]
+  | Gm 1/2
+  | Seq [Fm 1, Fm 7/6]
+  > FitLength thing1
+}
+
+thing3 = {
+  O[
+    (3/2, 0, 1, 1),
+    (11/8, 0, 1, -1),
+    (5/4, 0, 1, 0),
+    (9/8, 0, 1, 0),
+    (1, 0, 1, -1/2),
+    (1, -3, 1, -1/2),
+  ]
+  | Gm 1/2
+  | *(
+    f: 0|12 Expr `sin(2 + x^2) + 2`,
+    f: 12|12 Expr `(-1/3 * x) + 1`,
+    l: 0|12 Expr `sin(x) + 1`,
+    g: 20|20 [-1]
+  )
+  Take 30
+  | Overlay [
+    Repeat 6, 
+    Repeat 18 | Fm 3 | Gm 1/8 | Reverse | Lm 1/3
+    | ModBy [
+      *(
+        g: 10|10 Expr `sin(x)`,
+        p: -10|10 Expr `sin(x)`   
+      )
+      Take 100
+    ]
+  ]
+  > FitLength thing1 
+}
+
+main = {
+  Seq [
+    Overlay [
+      overtones
+      | thing1,
+      thing2,
+      thing3
+    ]
+    | Repeat 2
+    | Lm 1/5,
+  ]
+  | Repeat 8
+}

@@ -1,0 +1,91 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+overtones = {
+  O[
+    (4, 3, 1/2, 0),
+    (4, 0, 1/2, 0),
+    (3, 0, 1/2, 0),
+    (3, -2, 1/2, 0),
+    (2, 3, 1, 0),
+    (3/2, 0, 1, 0),
+    (1/1, 0, 1, 0),
+    (1/2, 0, 1, 0),
+    (1/2, 1, 1, 0),
+  ]
+}
+
+thing1 = {
+  Overlay [
+    Seq [Fm 1, Fm 5/4] 
+    -- | Pa 1/8
+    | ModBy [
+      Gm 5/4 | Pa -2/4,
+      Gm 6/4 | Pa -2/4,
+      Gm 7/4 | Pa -3/4,
+      Gm 8/4 | Pa -4/4,
+    ],
+  ]
+  | Repeat 2
+  | ModBy [
+    Gm 1/2, 
+    Gm 3/4,
+    Gm 7/8,
+    Gm 2/4 | Pm 1/2
+    | ModBy [Gm 1, Gm 1/2, Gm 1/3, Gm 1/2]
+  ]
+  | Overlay [Fm 1, Fm 3/2, Fm 2 | Pm 0]
+  | Overlay [
+    Reverse | AsIs, 
+    Fm 3 | Lm 2/3, 
+    Pm -1 | Lm 5/4 | Fm 3/2
+  ]
+  | Overlay [
+    Sine, Sine 0.9 | Gm 1/3, Sine 3.5 | Gm 1/16, 
+    Fm 1 | Sine 3 | Gm 1/6, 
+    Fm 2 | Sine 3.5 | Gm 1/6
+  ]
+  | Lm 3/4
+}
+
+bass = {
+  O[
+    (4, 0, 1, 0),
+    (2, 0, 1, 0),
+    (1, 0, 1, 0),
+    (1, 0.1, 1, 0),
+    (1/2, 0.3, 1, 0),
+    (1/2, 0, 1, 0),
+    (1/4, 0, 1, 0),
+    (1/4, 0.3, 1, 0),
+    (1/8, 0, 1, 0),
+  ]
+  | Overlay [Pa 2/3, Pa -1/2]
+  | Seq [Fm 1, Gm 7/8, Gm 1/8] | Lm 1/3
+  -- | Overlay [AsIs, AsIs | Pm -1/2]
+  | Gm 1/2
+  | Seq [
+    Fm 9/4, Fm 2, 
+    3/2^2/5, 1^3/5,
+    Fm 3/4, Fm 5/6, 
+    3/2^3/7, 5/3^4/7, 
+    15/8^1 | Pa -1/8, 2^1 | Pa 1/8, 
+    3^3/5 | Fm 5/6,
+  ]
+  | ModBy [Fm 1, Fm 3/4]
+  | Overlay [Sine, Sine 0.85 | Gm 1/3]
+  | Gm 2
+  > FitLength thing1
+  
+}
+
+main = {
+  Overlay [
+    overtones
+    | Gm 1/2
+    | thing1,
+    bass
+  ]
+  | Seq [AsIs, Fm 25/24]
+  | Lm 15/10
+  | Repeat 8
+}

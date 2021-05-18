@@ -1,0 +1,81 @@
+{ f: 293.7, l: 1, g: 1/2, p: 0 }
+
+overtones = {
+  O[
+    (1/1, 2, 1, 1),
+    (1/1, 0, 1, -1),
+    (1/2, 0, 1, 0),
+  ]
+}
+
+thing1 = {
+  Seq [
+    Fm 15/16, Fm 5/4, Fm 4/3,
+    Fm 1, Fm 3/2, Fm 5/3, 
+    Fm 4/5, Fm 7/6, Fm 3/2,
+    Fm 5/6, Fm 9/8, Fm 4/3,
+    Fm 3/4, Fm 15/16, Fm 7/6,
+    Fm 1, Fm 4/3, Fm 5/3,
+    Fm 15/16, Fm 4/3, Fm 8/5,
+    Fm 7/8, Fm 4/3, Fm 9/8,
+    
+    Fm 4/5, Fm 4/3, Fm 1, Fm 3/4,
+    Fm 2/3, Fm 5/4, Fm 1,
+    Fm 5/6 
+    | Seq [
+      Fm 1, Fm 9/8, Fm 5/4, Fm 11/8,
+      Fm 3/2, Fm 5/3, Fm 7/4, 
+      
+      Seq [Fm 2, Fm 3/2, Fm 9/8, Fm 2/3]
+      | Seq [
+        Fm 1, 
+        Fm 9/8 | Reverse | Lm 9/8, 
+        Fm 5/4 | Lm 5/4, 
+        Fm 11/8 | Reverse | Lm 11/8,
+        Fm 3/2 | Lm 5/4, Fm 5/3 | Lm 9/8 | Reverse,
+        Fm 8/5,
+      ],
+      Seq [
+        Seq [Fm 3/4, Fm 1, Fm 3/4, Fm 5/8] | Seq [Fm 1, Fm 7/8 | Lm 8/7], 
+        Fm 15/16, Fm 1, Fm 9/8, Fm 5/4, Fm 11/8,
+        Fm 3/2, Fm 5/3, Fm 7/4, 
+        Seq [Fm 2, Fm 3/2, Fm 9/8, Fm 2/3]
+        | Seq [
+          Fm 1, 
+          Fm 7/8 | Reverse | Lm 7/8, 
+          Fm 4/5 | Lm 4/5, 
+          Fm 3/4 | Reverse | Lm 7/8, 
+          Fm 2/3, 
+          Fm 3/5 | Lm 9/8 | Reverse,
+          Fm 25/48 | Lm 5/4
+        ],
+        Fm 1/2 | Lm 2
+        | Seq [
+          Fm 1, Fm 2, Fm 3, Fm 4, 
+          Fm 5, Fm 6, Fm 7, Fm 8, Fm 9, 
+          Fm 10 | Lm 2/3, Fm 11 | Lm 3
+        ]
+      ]
+    ],
+  ]
+}
+
+thing2 = {
+  Overlay [
+    Overlay [Sine, Square | Gm 1/6] 
+      | thing1 
+      | Fm 3/4,
+    Seq [1^2/10, 0^1/10, 0^7/10] 
+      | thing1 
+      | Fm 2
+  ]
+}
+
+main = {
+  Seq  [
+    overtones
+    | thing2,
+  ]
+  | Repeat 3
+  | Lm 1/6
+}

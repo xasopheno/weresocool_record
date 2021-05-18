@@ -1,0 +1,29 @@
+{ f: 233.1, l: 1, g: 1, p: 0 }
+
+thing1 = {
+  O[
+    (2/1, 0, 1, 0),
+    (1/1, 0, 1, 0),
+  ]
+  | Seq [
+    Fm 1, Fm 9/8, Fm 5/4, Fm 4/3, Fm 3/2, Fm 5/3, Fm 15/8, Fm 2
+  ] 
+  | Seq [AsIs, Reverse]
+}
+
+main = {
+  Overlay [
+    thing1,
+    Fm 1/2 | 
+    O[
+      (2, 0, 1, 0),
+      (1/1, 0, 1, 0),
+      (3/2, 0, 1, 0),
+      (1/1, 0, 1, 0),
+    ]
+    | Gm 1/2
+    > FitLength thing1
+  ]
+  | Lm 7/4
+  | Seq [Fm 8/9, Fm 1, Fm 9/8, Fm 6/5]
+}

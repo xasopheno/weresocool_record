@@ -1,0 +1,48 @@
+{ f: 293.7, l: 1, g: 1, p: 0 }
+
+major_scale = {
+  Seq [
+    Fm 1/1, Fm 25/24, Fm 9/8, Fm 6/5, Fm 5/4, 
+    Fm 4/3, Fm 11/8, Fm 3/2, 
+    Fm 8/5, Fm 5/3, Fm 7/4, 
+    Fm 15/8, Fm 2/1
+  ]
+}
+
+et = {
+  Seq [ET(24), Fm 2] 
+  -- | Seq [Fm 1, Fm 2] 
+  | Seq [Fm 1, Reverse]
+}
+
+main = {
+  Overlay [
+    et, 
+    Overlay [
+      Fm 3/4,
+      Fm 1/2 
+    ]
+    > FitLength et
+  ]
+  | Lm 1/2
+  
+  -- Seq [
+  --   Fm 1,
+  --   Fm 2, 
+  --   Fm 3, 
+  --   Fm 4, 
+  --   Fm 5,
+  --   Fm 6, 
+  --   Fm 7,
+  --   Fm 8, 
+  --   Fm 9, 
+  --   Fm 10, 
+  --   Fm 11, 
+  --   Fm 12, 
+  --   Fm 13,
+  --   Fm 14,
+  --   Fm 15,
+  -- ]
+  | Lm 3
+  | Gm 8
+}
