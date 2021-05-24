@@ -17,7 +17,7 @@ thing1 = {
       Fa 0.1 | Gm 1/2,
     ]
     | ModBy [
-      Lm 8, Gm 0
+      Lm 5, Fa -4 | Lm 3, Gm 0
     ],
     Overlay [
       Fm 1,     
@@ -142,12 +142,12 @@ thing4 = {
       (5/4, 0, 1, -1),
     ] | Lm 2,
   ]  
-  | Repeat 18
+  | Repeat 20
   | ModBy [
     *(
       g: 0|20 [1*20, -1*20, 0*10]  
     ) Take 40
-    | Repeat 3
+    | Seq [Gm 0, Gm 1 | ModBy [*(f: 0|120 [1]) Take 6], Gm 0]
   ]
   | FitLength thing1
 }
