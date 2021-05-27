@@ -161,7 +161,10 @@ aphid_twicks = {
       | Seq [
         Fm 5/3, Fm 3/2, Fm 5/4, Fm 9/8, Fm 1
       ] 
-      | Seq [Fm 5/4, Fm 9/8, Fm 7/8 | Reverse, Fm 3/4, Fm 1/2]
+      | Seq [
+        Fm 5/4, Fm 9/8, Fm 7/8 | Reverse, Fm 3/4, 
+        Fm 1/2 | Overlay [Fm 1, Fm 3/2]
+      ]
       | Lm 1/17,
       Fm 0 | Lm 1/10,
     ]
